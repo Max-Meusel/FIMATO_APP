@@ -28,22 +28,137 @@
                 <label for="password2">Passwort wiederholen</label>
                 <input type="password" id="password2" name="password2" required>
             </div>
+
+            <!-- Sicherheitsfrage -->
+            <div class="form-group">
+                <label for="question_type">Art der Sicherheitsfrage</label>
+                <div class="custom-select">
+                    <select id="question_type" name="question_type" required onchange="toggleQuestionFields()">
+                        <option value="standard">Vorgegebene Frage</option>
+                        <option value="custom">Eigene Frage</option>
+                    </select>
+                    <span class="select-arrow"></span>
+                </div>
+            </div>
+            
+            <div id="standard_questions" class="form-group">
+                <label for="security_question">Sicherheitsfrage</label>
+                <div class="custom-select">
+                    <select id="security_question" name="security_question">
+                        <option value="Wie hieß Ihr erstes Haustier?">Wie hieß Ihr erstes Haustier?</option>
+                        <option value="Wie lautet der Mädchenname Ihrer Mutter?">Wie lautet der Mädchenname Ihrer Mutter?</option>
+                        <option value="In welcher Stadt wurden Sie geboren?">In welcher Stadt wurden Sie geboren?</option>
+                        <option value="Wie hieß Ihre erste Schule?">Wie hieß Ihre erste Schule?</option>
+                        <option value="Was war Ihr erstes Auto?">Was war Ihr erstes Auto?</option>
+                    </select>
+                    <span class="select-arrow"></span>
+                </div>
+            </div>
+            
+            <div id="custom_question" class="form-group" style="display: none;">
+                <label for="custom_security_question">Eigene Sicherheitsfrage</label>
+                <input type="text" id="custom_security_question" name="custom_security_question">
+            </div>
+            
+            <div class="form-group">
+                <label for="security_answer">Ihre Antwort</label>
+                <input type="text" id="security_answer" name="security_answer" required>
+            </div>
+
+            <!-- Zustimmungen -->
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="accept_terms" name="accept_terms" required>
+                <label for="accept_terms">Ich akzeptiere die <a href="#" target="_blank">Allgemeinen Geschäftsbedingungen</a></label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="accept_privacy" name="accept_privacy" required>
+                <label for="accept_privacy">Ich akzeptiere die <a href="#" target="_blank">Datenschutzerklärung</a></label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="newsletter" name="newsletter">
+                <label for="newsletter">Ja, ich möchte den Newsletter erhalten</label>
+            </div>
+
             <div class="form-actions">
                 <button type="submit" class="btn-primary">Registrieren</button>
             </div>
         </form>
         <p>Bereits registriert? <a href="{{ url_for('auth.login') }}">Anmelden</a></p>
+        <p>Passwort vergessen? <a href="{{ url_for('auth.forgot_password') }}">Passwort zurücksetzen</a></p>
     </div>
 
+    <style>
+        .custom-select {
+            position: relative;
+            width: 100%;
+        }
+
+        .custom-select select {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .custom-select .select-arrow {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid #666;
+            pointer-events: none;
+        }
+
+        .custom-select select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        .custom-select select:hover {
+            border-color: #007bff;
+        }
+    </style>
+
     <script>
+        // Automatische Punktsetzung für das Geburtsdatum
         document.getElementById('birthday').addEventListener('input', function(e) {
             let value = e.target.value;
-            // Automatisch Punkte einfügen
             if (value.length === 2 && !value.includes('.')) {
                 e.target.value = value + '.';
             } else if (value.length === 5 && value[4] !== '.') {
                 e.target.value = value + '.';
             }
         });
+
+        // Toggle zwischen Standard- und eigener Sicherheitsfrage
+        function toggleQuestionFields() {
+            const questionType = document.getElementById('question_type').value;
+            const standardQuestions = document.getElementById('standard_questions');
+            const customQuestion = document.getElementById('custom_question');
+            
+            if (questionType === 'standard') {
+                standardQuestions.style.display = 'block';
+                customQuestion.style.display = 'none';
+                document.getElementById('custom_security_question').required = false;
+                document.getElementById('security_question').required = true;
+            } else {
+                standardQuestions.style.display = 'none';
+                customQuestion.style.display = 'block';
+                document.getElementById('custom_security_question').required = true;
+                document.getElementById('security_question').required = false;
+            }
+        }
     </script>
 {% endblock %} 

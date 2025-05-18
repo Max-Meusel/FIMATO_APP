@@ -10,6 +10,13 @@ class User(UserMixin, db.Model):
     birthday = db.Column(db.Date, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password_hash = db.Column(db.String(256))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+    accept_terms = db.Column(db.Boolean, nullable=False, default=False)
+    accept_privacy = db.Column(db.Boolean, nullable=False, default=False)
+    newsletter_subscription = db.Column(db.Boolean, nullable=False, default=False)
+    
+    # Relationship zu SecurityQuestion
+    security_question = db.relationship('SecurityQuestion', backref='user', uselist=False)
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password, method='pbkdf2:sha256')
