@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="auth-container">
+        <h1>Registrierung</h1>
+        <form action="" method="post" novalidate>
+            <div class="form-group">
+                <label for="firstname">Vorname</label>
+                <input type="text" id="firstname" name="firstname" required>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Nachname</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+            <div class="form-group">
+                <label for="birthday">Geburtstag (Format: DD.MM.YYYY)</label>
+                <input type="text" id="birthday" name="birthday" placeholder="31.12.1990" pattern="\d{2}\.\d{2}\.\d{4}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Passwort</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="password2">Passwort wiederholen</label>
+                <input type="password" id="password2" name="password2" required>
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">Registrieren</button>
+            </div>
+        </form>
+        <p>Bereits registriert? <a href="{{ url_for('auth.login') }}">Anmelden</a></p>
+    </div>
+
+    <script>
+        document.getElementById('birthday').addEventListener('input', function(e) {
+            let value = e.target.value;
+            // Automatisch Punkte einfügen
+            if (value.length === 2 && !value.includes('.')) {
+                e.target.value = value + '.';
+            } else if (value.length === 5 && value[4] !== '.') {
+                e.target.value = value + '.';
+            }
+        });
+    </script>
+{% endblock %} 
