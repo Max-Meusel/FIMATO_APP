@@ -20,8 +20,8 @@ def create_app(config_class=Config):
     from app.auth import bp as auth_bp
     app.register_blueprint(auth_bp, url_prefix='/auth')
 
-    from app.user_dashboard import bp as dashboard_bp
-    app.register_blueprint(dashboard_bp)
+    from app.user_ui import bp as user_ui_bp
+    app.register_blueprint(user_ui_bp)
 
     # Import models
     from app.models import user

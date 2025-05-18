@@ -11,7 +11,7 @@ from sqlalchemy import text
 @bp.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('user_dashboard.dashboard'))
+        return redirect(url_for('user_ui.dashboard'))
     
     if request.method == 'POST':
         email = request.form.get('email')
@@ -22,7 +22,7 @@ def login():
         if user and user.check_password(password):
             login_user(user, remember=remember)
             flash('Erfolgreich eingeloggt!', 'success')
-            return redirect(url_for('user_dashboard.dashboard'))
+            return redirect(url_for('user_ui.dashboard'))
         flash('Ungültige E-Mail oder Passwort', 'error')
     
     return render_template('auth/login.html', title='Login')
@@ -30,7 +30,7 @@ def login():
 @bp.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('user_dashboard.dashboard'))
+        return redirect(url_for('user_ui.dashboard'))
     
     if request.method == 'POST':
         firstname = request.form.get('firstname')
@@ -119,7 +119,7 @@ def logout():
 @bp.route('/forgot-password', methods=['GET', 'POST'])
 def forgot_password():
     if current_user.is_authenticated:
-        return redirect(url_for('user_dashboard.dashboard'))
+        return redirect(url_for('user_ui.dashboard'))
     
     if request.method == 'POST':
         email = request.form.get('email').strip().lower()  # Normalisiere die E-Mail
@@ -153,7 +153,7 @@ def forgot_password():
 @bp.route('/verify-security-question', methods=['GET', 'POST'])
 def verify_security_question():
     if current_user.is_authenticated:
-        return redirect(url_for('user_dashboard.dashboard'))
+        return redirect(url_for('user_ui.dashboard'))
     
     user_id = session.get('reset_user_id')
     if not user_id:
@@ -178,7 +178,7 @@ def verify_security_question():
 @bp.route('/reset-password', methods=['GET', 'POST'])
 def reset_password():
     if current_user.is_authenticated:
-        return redirect(url_for('user_dashboard.dashboard'))
+        return redirect(url_for('user_ui.dashboard'))
     
     if not session.get('can_reset_password'):
         return redirect(url_for('auth.forgot_password'))

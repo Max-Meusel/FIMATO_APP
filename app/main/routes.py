@@ -5,9 +5,4 @@ from app.main import bp
 @bp.route('/')
 @bp.route('/index')
 def index():
-    return render_template('main/index.html', title='Home')
-
-@bp.route('/profile')
-@login_required
-def profile():
-    return render_template('main/profile.html', title='Profil') 
+    return render_template('main/index.html', title='Home') 

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="welcome-section mb-4">
+        <h1>Navigation</h1>
+        <p>Hier finden Sie alle wichtigen Funktionen der FIMATO App</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Haushaltsbuch -->
+        <div class="dashboard-card">
+            <h2>Haushaltsbuch</h2>
+            <div class="card-content">
+                <div class="quick-actions">
+                    <a href="{{ url_for('user_ui.transactions') }}" class="btn-primary">Transaktionen</a>
+                    <a href="{{ url_for('user_ui.standing_orders') }}" class="btn-primary">Daueraufträge</a>
+                    <a href="{{ url_for('user_ui.contracts') }}" class="btn-primary">Verträge & Abos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vermögensverwaltung -->
+        <div class="dashboard-card">
+            <h2>Vermögensverwaltung</h2>
+            <div class="card-content">
+                <div class="quick-actions">
+                    <a href="{{ url_for('user_ui.securities') }}" class="btn-primary">Wertpapierdepot</a>
+                    <a href="{{ url_for('user_ui.real_estate') }}" class="btn-primary">Immobilien</a>
+                    <a href="{{ url_for('user_ui.vehicles') }}" class="btn-primary">Fahrzeuge</a>
+                    <a href="{{ url_for('user_ui.inventory') }}" class="btn-primary">Inventarliste</a>
+                    <a href="{{ url_for('user_ui.other_assets') }}" class="btn-primary">Sonstige Vermögenswerte</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Finanzreport -->
+        <div class="dashboard-card">
+            <h2>Finanzreport</h2>
+            <div class="card-content">
+                <div class="quick-actions">
+                    <a href="{{ url_for('user_ui.income') }}" class="btn-primary">Einnahmen</a>
+                    <a href="{{ url_for('user_ui.expenses') }}" class="btn-primary">Ausgaben</a>
+                    <a href="{{ url_for('user_ui.asset_development') }}" class="btn-primary">Vermögensentwicklung</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ziele -->
+        <div class="dashboard-card">
+            <h2>Ziele</h2>
+            <div class="card-content">
+                <div class="quick-actions">
+                    <a href="{{ url_for('user_ui.life_planning') }}" class="btn-primary">Lebensplanung</a>
+                    <a href="{{ url_for('user_ui.goals_overview') }}" class="btn-primary">Übersicht Ziele</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bankkonten -->
+        <div class="dashboard-card">
+            <h2>Bankkonten</h2>
+            <div class="card-content">
+                <div class="quick-actions">
+                    <a href="{{ url_for('user_ui.bank_accounts') }}" class="btn-primary">Bankkonten</a>
+                    <a href="{{ url_for('user_ui.depots') }}" class="btn-primary">Depots</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Einstellungen -->
+        <div class="dashboard-card">
+            <h2>Einstellungen</h2>
+            <div class="card-content">
+                <div class="quick-actions">
+                    <a href="{{ url_for('user_ui.general_settings') }}" class="btn-primary">Allgemeine Einstellungen</a>
+                    <a href="{{ url_for('user_ui.profile') }}" class="btn-primary">User Profil</a>
+                    <a href="{{ url_for('user_ui.categories') }}" class="btn-primary">Kategorien</a>
+                    <a href="{{ url_for('user_ui.bank_settings') }}" class="btn-primary">Bankkonten</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

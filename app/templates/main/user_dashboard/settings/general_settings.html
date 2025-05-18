@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="welcome-section mb-4">
+        <h1>Allgemeine Einstellungen</h1>
+        <p>Hier können Sie Ihre persönlichen Einstellungen anpassen</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- E-Mail Änderung -->
+        <div class="dashboard-card">
+            <h2>E-Mail Adresse ändern</h2>
+            <div class="card-content">
+                <form action="{{ url_for('user_ui.update_email') }}" method="POST">
+                    <div class="form-group">
+                        <label for="current_email">Aktuelle E-Mail</label>
+                        <input type="email" id="current_email" name="current_email" value="{{ current_user.email }}" readonly class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new_email">Neue E-Mail</label>
+                        <input type="email" id="new_email" name="new_email" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort bestätigen</label>
+                        <input type="password" id="password" name="password" required class="form-control">
+                    </div>
+                    <div class="quick-actions">
+                        <button type="submit" class="btn-primary">E-Mail Adresse ändern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Passwort Änderung -->
+        <div class="dashboard-card">
+            <h2>Passwort ändern</h2>
+            <div class="card-content">
+                <form action="{{ url_for('user_ui.update_password') }}" method="POST">
+                    <div class="form-group">
+                        <label for="current_password">Aktuelles Passwort</label>
+                        <input type="password" id="current_password" name="current_password" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">Neues Passwort</label>
+                        <input type="password" id="new_password" name="new_password" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Neues Passwort bestätigen</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required class="form-control">
+                    </div>
+                    <div class="quick-actions">
+                        <button type="submit" class="btn-primary">Passwort ändern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Newsletter Einstellungen -->
+        <div class="dashboard-card">
+            <h2>Newsletter Einstellungen</h2>
+            <div class="card-content">
+                <form action="{{ url_for('user_ui.update_newsletter') }}" method="POST">
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" name="newsletter" {% if current_user.newsletter_subscription %}checked{% endif %}>
+                            Newsletter abonnieren
+                        </label>
+                    </div>
+                    <div class="quick-actions">
+                        <button type="submit" class="btn-primary">Einstellungen speichern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-control[readonly] {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 1.2rem;
+    height: 1.2rem;
+}
+</style>
+{% endblock %} 

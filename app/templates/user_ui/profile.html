@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="dashboard-container">
+    <div class="welcome-section mb-4">
+        <h1>Profil</h1>
+        <p>Hier können Sie Ihre persönlichen Informationen einsehen</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Persönliche Informationen -->
+        <div class="dashboard-card">
+            <h2>Persönliche Informationen</h2>
+            <div class="card-content">
+                <div class="form-group">
+                    <label>User ID</label>
+                    <input type="text" value="{{ current_user.id }}" readonly class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Vorname</label>
+                    <input type="text" value="{{ current_user.firstname if current_user.firstname else 'Nicht angegeben' }}" readonly class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Nachname</label>
+                    <input type="text" value="{{ current_user.lastname if current_user.lastname else 'Nicht angegeben' }}" readonly class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Geburtstag</label>
+                    <input type="text" value="{{ current_user.birthday.strftime('%d.%m.%Y') if current_user.birthday else 'Nicht angegeben' }}" readonly class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Mitglied seit</label>
+                    <input type="text" value="{{ current_user.created_at.strftime('%d.%m.%Y') }}" readonly class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- E-Mail Änderung -->
+        <div class="dashboard-card">
+            <h2>E-Mail Adresse ändern</h2>
+            <div class="card-content">
+                <form action="{{ url_for('user_ui.update_email') }}" method="POST">
+                    <div class="form-group">
+                        <label for="current_email">Aktuelle E-Mail</label>
+                        <input type="email" id="current_email" name="current_email" value="{{ current_user.email }}" readonly class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new_email">Neue E-Mail</label>
+                        <input type="email" id="new_email" name="new_email" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Passwort bestätigen</label>
+                        <input type="password" id="password" name="password" required class="form-control">
+                    </div>
+                    <div class="quick-actions">
+                        <button type="submit" class="btn-primary">E-Mail Adresse ändern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Passwort Änderung -->
+        <div class="dashboard-card">
+            <h2>Passwort ändern</h2>
+            <div class="card-content">
+                <form action="{{ url_for('user_ui.update_password') }}" method="POST">
+                    <div class="form-group">
+                        <label for="current_password">Aktuelles Passwort</label>
+                        <input type="password" id="current_password" name="current_password" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="new_password">Neues Passwort</label>
+                        <input type="password" id="new_password" name="new_password" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm_password">Neues Passwort bestätigen</label>
+                        <input type="password" id="confirm_password" name="confirm_password" required class="form-control">
+                    </div>
+                    <div class="quick-actions">
+                        <button type="submit" class="btn-primary">Passwort ändern</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Account Verwaltung -->
+        <div class="dashboard-card">
+            <h2>Account Verwaltung</h2>
+            <div class="card-content">
+                <div class="form-group">
+                    <p class="warning-text">Achtung: Das Löschen Ihres Accounts kann nicht rückgängig gemacht werden.</p>
+                </div>
+                <div class="quick-actions">
+                    <button onclick="confirmDelete()" class="btn-danger">Account löschen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-control[readonly] {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.warning-text {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.btn-danger {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+    width: 100%;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+</style>
+
+<script>
+function confirmDelete() {
+    if (confirm('Sind Sie sicher, dass Sie Ihren Account löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.')) {
+        window.location.href = "{{ url_for('user_ui.delete_account') }}";
+    }
+}
+</script>
+{% endblock %} 
