@@ -18,103 +18,103 @@ def navigation():
 @bp.route('/profile')
 @login_required
 def profile():
-    return render_template('user_ui/profile.html', title='Profil')
+    return render_template('user_ui/settings/profile.html', title='Profil')
 
 # Haushaltsbuch
 @bp.route('/transactions')
 @login_required
 def transactions():
-    return render_template('main/user_dashboard/household_book/transactions.html', title='Transaktionen')
+    return render_template('user_ui/household_book/transactions.html', title='Transaktionen')
 
 @bp.route('/standing-orders')
 @login_required
 def standing_orders():
-    return render_template('main/user_dashboard/household_book/standing_orders.html', title='Daueraufträge')
+    return render_template('user_ui/household_book/standing_orders.html', title='Daueraufträge')
 
 @bp.route('/contracts')
 @login_required
 def contracts():
-    return render_template('main/user_dashboard/household_book/contracts.html', title='Verträge & Abos')
+    return render_template('user_ui/household_book/contracts.html', title='Verträge & Abos')
 
 # Vermögensverwaltung
 @bp.route('/securities')
 @login_required
 def securities():
-    return render_template('main/user_dashboard/asset_management/securities.html', title='Wertpapierdepot')
+    return render_template('user_ui/asset_management/securities.html', title='Wertpapierdepot')
 
 @bp.route('/real-estate')
 @login_required
 def real_estate():
-    return render_template('main/user_dashboard/asset_management/real_estate.html', title='Immobilien')
+    return render_template('user_ui/asset_management/real_estate.html', title='Immobilien')
 
 @bp.route('/vehicles')
 @login_required
 def vehicles():
-    return render_template('main/user_dashboard/asset_management/vehicles.html', title='Fahrzeuge')
+    return render_template('user_ui/asset_management/vehicles.html', title='Fahrzeuge')
 
 @bp.route('/inventory')
 @login_required
 def inventory():
-    return render_template('main/user_dashboard/asset_management/inventory.html', title='Inventarliste')
+    return render_template('user_ui/asset_management/inventory.html', title='Inventarliste')
 
 @bp.route('/other-assets')
 @login_required
 def other_assets():
-    return render_template('main/user_dashboard/asset_management/other_assets.html', title='Sonstige Vermögenswerte')
+    return render_template('user_ui/asset_management/other_assets.html', title='Sonstige Vermögenswerte')
 
 # Finanzreport
 @bp.route('/income')
 @login_required
 def income():
-    return render_template('main/user_dashboard/financial_report/income.html', title='Einnahmen')
+    return render_template('user_ui/financial_report/income.html', title='Einnahmen')
 
 @bp.route('/expenses')
 @login_required
 def expenses():
-    return render_template('main/user_dashboard/financial_report/expenses.html', title='Ausgaben')
+    return render_template('user_ui/financial_report/expenses.html', title='Ausgaben')
 
 @bp.route('/asset-development')
 @login_required
 def asset_development():
-    return render_template('main/user_dashboard/financial_report/asset_development.html', title='Vermögensentwicklung')
+    return render_template('user_ui/financial_report/asset_development.html', title='Vermögensentwicklung')
 
 # Ziele
 @bp.route('/life-planning')
 @login_required
 def life_planning():
-    return render_template('main/user_dashboard/goals/life_planning.html', title='Lebensplanung')
+    return render_template('user_ui/goals/life_planning.html', title='Lebensplanung')
 
 @bp.route('/goals-overview')
 @login_required
 def goals_overview():
-    return render_template('main/user_dashboard/goals/goals_overview.html', title='Übersicht Ziele')
+    return render_template('user_ui/goals/goals_overview.html', title='Übersicht Ziele')
 
 # Bankkonten
 @bp.route('/bank-accounts')
 @login_required
 def bank_accounts():
-    return render_template('main/user_dashboard/bank_accounts/accounts.html', title='Bankkonten')
+    return render_template('user_ui/bank_accounts/accounts.html', title='Bankkonten')
 
 @bp.route('/depots')
 @login_required
 def depots():
-    return render_template('main/user_dashboard/bank_accounts/depots.html', title='Depots')
+    return render_template('user_ui/bank_accounts/depots.html', title='Depots')
 
 # Einstellungen
 @bp.route('/general-settings')
 @login_required
 def general_settings():
-    return render_template('main/user_dashboard/settings/general_settings.html', title='Allgemeine Einstellungen')
+    return render_template('user_ui/settings/general_settings.html', title='Allgemeine Einstellungen')
 
 @bp.route('/categories')
 @login_required
 def categories():
-    return render_template('main/user_dashboard/settings/categories.html', title='Kategorien')
+    return render_template('user_ui/settings/categories.html', title='Kategorien')
 
 @bp.route('/bank-settings')
 @login_required
 def bank_settings():
-    return render_template('main/user_dashboard/settings/bank_settings.html', title='Bankkonten-Einstellungen')
+    return render_template('user_ui/settings/bank_settings.html', title='Bankkonten-Einstellungen')
 
 @bp.route('/update-email', methods=['POST'])
 @login_required

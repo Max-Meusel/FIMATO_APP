@@ -102,35 +102,98 @@
 
     <!-- Dashboard Content -->
     <div class="dashboard-grid">
+        <!-- Einnahmen Card -->
         <div class="dashboard-card">
-            <h2>Profil</h2>
+            <h2>Einnahmen</h2>
             <div class="card-content">
-                <p><strong>Name:</strong> {{ current_user.full_name }}</p>
-                <p><strong>E-Mail:</strong> {{ current_user.email }}</p>
-                <p><strong>Geburtstag:</strong> {{ current_user.birthday.strftime('%d.%m.%Y') }}</p>
-                <a href="{{ url_for('user_ui.profile') }}" class="btn btn-secondary">
-                    Profil bearbeiten
-                </a>
+                <div class="chart-container">
+                    <div class="placeholder-chart">
+                        <p>Diagramm: Einnahmen der letzten Monate/Jahre</p>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-line fa-3x"></i>
+                            <p>Diagramm wird geladen...</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- Ausgaben Card -->
         <div class="dashboard-card">
-            <h2>Aktivitäten</h2>
+            <h2>Ausgaben</h2>
             <div class="card-content">
-                <ul class="activity-list">
-                    <li>Willkommen bei FIMATO</li>
-                    <li>Ihr Account wurde erfolgreich erstellt</li>
-                </ul>
+                <div class="chart-container">
+                    <div class="placeholder-chart">
+                        <p>Diagramm: Ausgaben der letzten Monate/Jahre</p>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-bar fa-3x"></i>
+                            <p>Diagramm wird geladen...</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- Sparsumme Card -->
         <div class="dashboard-card">
-            <h2>Schnellzugriff</h2>
+            <h2>Sparsumme</h2>
             <div class="card-content">
-                <div class="quick-actions">
-                    <a href="#" class="btn btn-primary">Neue Aktion</a>
-                    <a href="#" class="btn btn-secondary">Einstellungen</a>
-                    <a href="#" class="btn btn-secondary">Hilfe</a>
+                <div class="chart-container">
+                    <div class="placeholder-chart">
+                        <p>Diagramm: Sparsumme der letzten Monate/Jahre</p>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-piggy-bank fa-3x"></i>
+                            <p>Diagramm wird geladen...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sparquote Card -->
+        <div class="dashboard-card">
+            <h2>Sparquote</h2>
+            <div class="card-content">
+                <div class="chart-container">
+                    <div class="placeholder-chart">
+                        <p>Diagramm: Sparquote der letzten Monate/Jahre</p>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-percentage fa-3x"></i>
+                            <p>Diagramm wird geladen...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gesamtvermögen Card -->
+        <div class="dashboard-card">
+            <h2>Gesamtvermögen nach Assets</h2>
+            <div class="card-content">
+                <div class="chart-container">
+                    <div class="placeholder-chart">
+                        <p>Diagramm: Gesamtvermögen nach Assets</p>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-chart-pie fa-3x"></i>
+                            <p>Diagramm wird geladen...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eigen- und Fremdkapital Card -->
+        <div class="dashboard-card">
+            <h2>Eigen- und Fremdkapital</h2>
+            <div class="card-content">
+                <div class="chart-container">
+                    <div class="placeholder-chart">
+                        <p>Diagramm: Eigen- und Fremdkapital nach Assets</p>
+                        <div class="chart-placeholder">
+                            <i class="fas fa-balance-scale fa-3x"></i>
+                            <p>Diagramm wird geladen...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -158,35 +221,53 @@
 .dashboard-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
+    gap: 1.5rem;
+    padding: 1.5rem;
 }
 
 .dashboard-card {
     background: white;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 20px;
+    padding: 1.5rem;
+}
+
+.dashboard-card h2 {
+    color: #333;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
 }
 
 .card-content {
     margin-top: 15px;
 }
 
-.activity-list {
-    list-style: none;
-    padding: 0;
+.chart-container {
+    width: 100%;
+    height: 250px;
 }
 
-.activity-list li {
-    padding: 10px 0;
-    border-bottom: 1px solid #eee;
+.placeholder-chart {
+    text-align: center;
+    color: #666;
 }
 
-.quick-actions {
+.chart-placeholder {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.chart-placeholder i {
+    color: #dee2e6;
+    margin-bottom: 1rem;
 }
 </style>
 
