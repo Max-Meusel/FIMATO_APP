@@ -7,99 +7,6 @@
         <p class="last-login">Sie sind erfolgreich eingeloggt.</p>
     </div>
 
-    <!-- Hauptnavigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNavigation">
-                <ul class="navbar-nav">
-                    <!-- Dashboard -->
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fas fa-home"></i> Dashboard</a>
-                    </li>
-
-                    <!-- Finanzverwaltung -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="fas fa-wallet"></i> Finanzverwaltung
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>
-                                <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                    Buchungen
-                                </a>
-                                <ul class="dropdown-menu dropdown-submenu">
-                                    <li><a class="dropdown-item" href="#">Transaktionen</a></li>
-                                    <li><a class="dropdown-item" href="#">Daueraufträge</a></li>
-                                    <li><a class="dropdown-item" href="#">Verträge & Abos</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                    Vermögensverwaltung
-                                </a>
-                                <ul class="dropdown-menu dropdown-submenu">
-                                    <li><a class="dropdown-item" href="#">Wertpapierdepot</a></li>
-                                    <li><a class="dropdown-item" href="#">Immobilien</a></li>
-                                    <li><a class="dropdown-item" href="#">Fahrzeuge</a></li>
-                                    <li><a class="dropdown-item" href="#">Inventarliste</a></li>
-                                    <li><a class="dropdown-item" href="#">Sonstige Vermögenswerte</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <!-- Finanzreport -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="fas fa-chart-line"></i> Finanzreport
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Einnahmen</a></li>
-                            <li><a class="dropdown-item" href="#">Ausgaben</a></li>
-                            <li><a class="dropdown-item" href="#">Vermögensentwicklung</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Ziele -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="fas fa-bullseye"></i> Ziele
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Lebensplanung</a></li>
-                            <li><a class="dropdown-item" href="#">Übersicht Ziele</a></li>
-                        </ul>
-                    </li>
-
-                    <!-- Einstellungen -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                            <i class="fas fa-cog"></i> Einstellungen
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Allgemeine Einstellungen</a></li>
-                            <li>
-                                <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown">
-                                    Kategorien
-                                </a>
-                                <ul class="dropdown-menu dropdown-submenu">
-                                    <li><a class="dropdown-item" href="#">Kategorien Haushaltsbuch</a></li>
-                                    <li><a class="dropdown-item" href="#">Kategorien Vermögensverwaltung Branchen</a></li>
-                                    <li><a class="dropdown-item" href="#">Kategorien Vermögensverwaltung Länder und Regionen</a></li>
-                                    <li><a class="dropdown-item" href="#">Kategorien Vermögensverwaltung Assetcategories</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="dropdown-item" href="#">Bankkonten</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
     <!-- Dashboard Content -->
     <div class="dashboard-grid">
         <!-- Einnahmen Card -->
@@ -201,18 +108,6 @@
 </div>
 
 <style>
-/* Dropdown Submenu Styles */
-.dropdown-submenu {
-    position: absolute;
-    left: 100%;
-    top: 0;
-    display: none;
-}
-
-.dropdown-item:hover > .dropdown-submenu {
-    display: block;
-}
-
 /* Verbesserte Dashboard Styles */
 .dashboard-container {
     padding: 20px;
@@ -270,30 +165,4 @@
     margin-bottom: 1rem;
 }
 </style>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Aktiviere alle Dropdowns
-    var dropdowns = document.querySelectorAll('.dropdown-toggle');
-    dropdowns.forEach(function(dropdown) {
-        dropdown.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            var submenu = this.nextElementSibling;
-            if (submenu) {
-                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
-            }
-        });
-    });
-
-    // Schließe Dropdowns beim Klick außerhalb
-    document.addEventListener('click', function(e) {
-        if (!e.target.matches('.dropdown-toggle')) {
-            document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-                menu.style.display = 'none';
-            });
-        }
-    });
-});
-</script>
 {% endblock %} 

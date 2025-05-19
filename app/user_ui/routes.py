@@ -111,11 +111,6 @@ def general_settings():
 def categories():
     return render_template('user_ui/settings/categories.html', title='Kategorien')
 
-@bp.route('/bank-settings')
-@login_required
-def bank_settings():
-    return render_template('user_ui/settings/bank_settings.html', title='Bankkonten-Einstellungen')
-
 @bp.route('/update-email', methods=['POST'])
 @login_required
 def update_email():
